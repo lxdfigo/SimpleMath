@@ -2,21 +2,14 @@
 #include "SimpleMath.h"
 
 int main(){
-	Vec4f vec(1);
-	Quatf quat(vec);
 	Mat4x4d mat;
+	Quatf quat(1,1,0,1.57);
+	Vec3f vec3;
+	vec3.Elements[0] = 1;
 
-	printf("%f\n",mat[2][1]);
+	Quatf quat2 = quat * vec3 * quat.inverse();
 
-	vec += Vec4f();
-	vec /= 2.;
-	vec *= 3.;
-	
-
-	vec = vec - Vec4f(-1);
-
-	vec -= Vec4f(2);
-	printf("%f %f",vec.Elements[0],vec.Elements[3]);
+	printf("%f %f %f",quat2.Elements[0],quat2.Elements[1],quat2.Elements[2]);
 
 	getchar();
 	return 0;

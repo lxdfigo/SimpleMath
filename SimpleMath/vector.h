@@ -58,6 +58,7 @@ inline CVector<T,DIMENSION>& CVector<T,DIMENSION>::operator=(const CVector& Vect
 	return *this;
 }
 
+
 template<class T, int DIMENSION>
 inline bool CVector<T,DIMENSION>::operator < (const CVector<T,DIMENSION>& Vector) const {
 	bool Result = true;
@@ -162,7 +163,7 @@ inline T  CVector<T,DIMENSION>::Length() const{
 template<class T, int DIMENSION>
 T CVector<T,DIMENSION>::SquaredDistance(const CVector<T,DIMENSION>& Vector) const{
 	CVector<T,DIMENSION> Difference = (*this) - Vector;
-	return Difference.DotProduct(Difference);
+	return Difference.Dot(Difference);
 }
 
 
@@ -178,13 +179,13 @@ void CVector<T,DIMENSION>::UniformRandomHyperSpehere(T rng){
 		for (int i = 0; i < DIMENSION; i++){
 			this->Elements[i] = 2.0f * rng - 1.0f;
 		}
-	}while (this->DotProduct((*this)) > 1.0f);
+	}while (this->Dot((*this)) > 1.0f);
 }
 
 
 template<class T, int DIMENSION>
 void CVector<T,DIMENSION>::Normalize(){
-	T Length = sqrtf(this->DotProduct(*this));
+	T Length = sqrtf(this->Dot(*this));
 	T Scale = 1.0f / (Length + 1E-20f);
 
 	for (int i = 0; i < DIMENSION; i++){
