@@ -209,6 +209,15 @@ public:
 		T angle = acos(from.Dot(to));
 		*this = (from * sin((1-t)*angle) + to * sin(t*angle)) / sin(angle)
 	}
+	CVector<T,3> rotate (const CVector<T,3>& vec ) const{
+		Quat quat = *this * vec * this->inverse();
+		CVector<T,3> result;
+		result.Elements[0] = quat.Elements[0];
+		result.Elements[1] = quat.Elements[1];
+		result.Elements[2] = quat.Elements[2];
+
+		return result;
+	}
 };    
 
 typedef Quat<float> Quatf;
