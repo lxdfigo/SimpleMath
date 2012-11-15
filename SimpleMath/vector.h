@@ -18,7 +18,11 @@ public:
 			this->Elements[i] = f;
 		} 
 	}
-	CVector(T v1, T v2, ...){
+	CVector(T v1, T v2){
+		this->Elements[0] = v1;
+		this->Elements[1] = v2;
+	}
+	CVector(T v1, T v2, T v3, ..){
 		T *p = (T*)(&v1);
 		for (int i = 0; i < DIMENSION; i++){
 			this->Elements[i] = (T)(*(p+i));
@@ -230,7 +234,7 @@ CVector<T,DIMENSION> CVector<T,DIMENSION>::operator+(const CVector<T,DIMENSION>&
 
 template<class T, int DIMENSION>
 inline T  CVector<T,DIMENSION>::Length() const{
-	return sqrtf(Length2());
+	return sqrt(Length2());
 }
 
 template<class T, int DIMENSION>
@@ -267,7 +271,7 @@ void CVector<T,DIMENSION>::UniformRandomHyperSpehere(T rng){
 
 template<class T, int DIMENSION>
 void CVector<T,DIMENSION>::Normalize(){
-	T Length = sqrtf(this->Dot(*this));
+	T Length = sqrt(this->Dot(*this));
 	T Scale = 1.0f / (Length + 1E-20f);
 
 	for (int i = 0; i < DIMENSION; i++){

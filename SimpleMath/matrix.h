@@ -11,6 +11,13 @@ private:
 public:
 	CMatrix(){}
 
+	void zero(){
+		for(int i = 0; i < DIMENSION; ++i){
+			for(int j = 0; j < DIMENSION; ++j){
+				Rows[i][j] = 0; 
+			}
+		}
+	}
 
 	inline CVector<T,DIMENSION> & operator [] (int i) { return Rows[i]; }
 	inline CVector<T,DIMENSION>   operator [] (int i) const { return Rows[i]; }
@@ -54,6 +61,12 @@ public:
 		}
 	}
 
+	void reset(){
+		mat.zero();
+		for(int i = 0; i < DIMENSION; ++i){
+			mat[i][i]  = 1.0;
+		}
+	}
 	CTransform& makeMoveTrans(CVector<T,DIMENSION-1>& vec){
 		for(int i = 0; i < DIMENSION-1; ++i){
 			mat[i][DIMENSION-1] += vec[i];
